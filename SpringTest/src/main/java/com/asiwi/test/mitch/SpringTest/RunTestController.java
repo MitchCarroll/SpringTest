@@ -1,5 +1,7 @@
 package com.asiwi.test.mitch.SpringTest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @EnableAsync
 public class RunTestController {
-	private MyBean myBean;
+	@Autowired 
+	private ApplicationContext context;
 	
 	@RequestMapping(value = "/runTest", method = RequestMethod.GET)
 	public String runTest(@RequestParam(value="name", required=false, defaultValue="DefaultValue") String name, Model model) {
+		
 		System.out.println("CONTROLLER: Initializing bean for async job...");
-		myBean = new MyBean("WEB");
+		MyBean myBean = (MyBean) context.getBean("WebBean");
 		System.out.println("CONTROLLER: Starting async job...");
 		myBean.test();
 		System.out.println("CONTROLLER: Async job complete.");

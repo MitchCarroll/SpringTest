@@ -11,9 +11,14 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @SpringBootApplication
 @EnableAsync
 public class SpringTestApplication {
-	@Bean
+	@Bean("TestBean")
 	public MyBean myBean() {
 		return new MyBean();
+	}
+	
+	@Bean("WebBean")
+	public MyBean webBean() {
+		return new MyBean("WEB");
 	}
 	
 	@Bean(name="taskExecutor")
@@ -29,7 +34,7 @@ public class SpringTestApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(SpringTestApplication.class, args);
-		MyBean bean = context.getBean(MyBean.class);
+		MyBean bean = (MyBean) context.getBean("TestBean");
 		
 		System.out.println("MAIN: Starting Test...");
 		bean.test();
