@@ -33,9 +33,12 @@ public class SpringTestApplication {
     }
 
 	public static void main(String[] args) {
+		System.out.println("MAIN: Starting Application...");
 		ConfigurableApplicationContext context = SpringApplication.run(SpringTestApplication.class, args);
+		System.out.println("MAIN: Initializing test bean...");
 		MyBean bean = (MyBean) context.getBean("TestBean");
-		
+		bean.setValue("test");
+		System.out.println("MAIN: Test bean initialized.");
 		System.out.println("MAIN: Starting Test...");
 		bean.test();
 		System.out.println("MAIN: Ending Test...");

@@ -17,12 +17,14 @@ public class RunTestController {
 	
 	@RequestMapping(value = "/runTest", method = RequestMethod.GET)
 	public String runTest(@RequestParam(value="name", required=false, defaultValue="DefaultValue") String name, Model model) {
-		
 		System.out.println("CONTROLLER: Initializing bean for async job...");
 		MyBean myBean = (MyBean) context.getBean("WebBean");
+		myBean.setValue(name);
+
 		System.out.println("CONTROLLER: Starting async job...");
 		myBean.test();
 		System.out.println("CONTROLLER: Async job complete.");
+		
 		model.addAttribute("name", name);
 		System.out.println("CONTROLLER: Name attribute set to " + name + ".");
 		return "runTest";
