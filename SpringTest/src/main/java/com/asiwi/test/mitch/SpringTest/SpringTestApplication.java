@@ -20,6 +20,11 @@ public class SpringTestApplication {
 	public MyBean webBean() {
 		return new MyBean("WEB");
 	}
+
+	@Bean("DbBean")
+	public MyDBBean dbBean() {
+		return new MyDBBean();
+	}
 	
 	@Bean(name="taskExecutor")
 	public TaskExecutor workExecutor() {

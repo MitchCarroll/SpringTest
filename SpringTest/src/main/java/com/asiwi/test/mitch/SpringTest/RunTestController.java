@@ -16,14 +16,16 @@ public class RunTestController {
 	private ApplicationContext context;
 	
 	@RequestMapping(value = "/runTest", method = RequestMethod.GET)
-	public String runTest(@RequestParam(value="name", required=false, defaultValue="DefaultValue") String name, Model model) {
+	public String runTest(@RequestParam(value="name", required=false, defaultValue="DefaultValue") String name, Model model) throws Exception {
 		System.out.println("CONTROLLER: Initializing bean for async job...");
 		MyBean myBean = (MyBean) context.getBean("WebBean");
+		MyDBBean dbBean = (MyDBBean) context.getBean("DbBean");
 		myBean.setValue(name);
-
-		System.out.println("CONTROLLER: Starting async job...");
+		
+		System.out.println("CONTROLLER: Starting async jobs...");
 		myBean.test();
-		System.out.println("CONTROLLER: Async job complete.");
+		dbBean.test();
+		System.out.println("CONTROLLER: Async jobs complete.");
 		
 		model.addAttribute("name", name);
 		System.out.println("CONTROLLER: Name attribute set to " + name + ".");
