@@ -1,6 +1,5 @@
 package com.asiwi.test.mitch.SpringTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.scheduling.annotation.Async;

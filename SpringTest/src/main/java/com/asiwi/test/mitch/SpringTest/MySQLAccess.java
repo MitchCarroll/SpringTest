@@ -1,19 +1,16 @@
 package com.asiwi.test.mitch.SpringTest;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.sql.DriverManager;
 
 public class MySQLAccess {
 	private Connection connection = null;
 	private Statement statement = null;
-	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 	
 	public void readDataBase() throws Exception {
