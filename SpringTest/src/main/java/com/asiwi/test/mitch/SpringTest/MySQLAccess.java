@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.DriverManager;
 
@@ -18,7 +19,7 @@ public class MySQLAccess {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost/test?" + "user=sqluser&password=dbpassword");
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery("select * from people order by dob;");
+			resultSet = statement.executeQuery("select last_name, first_name, middle_name, dob from people order by dob desc;");
 			writeResultSet(resultSet);
 		}
 		catch(Exception e) {
@@ -41,14 +42,13 @@ public class MySQLAccess {
 
 
 	public List<String> getNameList() {
-		List<String> ret = null;
-		
+		ArrayList<String> ret = new ArrayList<String>();
 		try {
 			while(resultSet.next()) {
 				String lastName = resultSet.getString("last_name");
 				String firstName = resultSet.getString("first_name");
 				String middleName = resultSet.getString("middle_name");
-				ret.add(""+firstName+" "+middleName.substring(0, 1)+". "+lastName);
+				ret.add(firstName+" "+middleName.substring(0, 1)+". "+lastName);
 			}
 		} catch (SQLException e) {
 			System.out.println("Exception in writeResultSet: "+e.getMessage());		

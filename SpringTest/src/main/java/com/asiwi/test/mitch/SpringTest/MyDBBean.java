@@ -1,5 +1,6 @@
 package com.asiwi.test.mitch.SpringTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.scheduling.annotation.Async;
@@ -32,11 +33,10 @@ public class MyDBBean {
 			db.readDataBase();
 			return db.getNameList();
 		} catch(Exception e) {
-			
+			return null;
 		} finally {
 			db.close();
-		}
-		return null;		
+		}		
 	}
 
 }

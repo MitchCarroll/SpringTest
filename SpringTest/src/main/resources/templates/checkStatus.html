@@ -7,18 +7,20 @@
 <body>
 	<H1>Check Status</H1>
 	<div th:switch="${isTesting}">
-		<p th:="'true'">Still Testing</p>
-		<p th:="'false'">Done Testing</p>
-		<p th:="*">Ok, something went wrong...</p>
+		<p th:case="true">Still Testing</p>
+		<p th:case="false">Done Testing</p>
+		<p th:case="*">Ok, something went wrong...</p>
+		Testing Status: <span th:text="${isTesting}"></span>
 	</div>
-	<table>
+	<table border='2px' th:unless="${isTesting}">
 		<tr>
-			<th>name</th>
+			<th>Name</th>
 		</tr>
-		<tr th:each = "person: ${people}">
+		<tr th:each="person: ${people}">
 			<td th:text="${person.name}"/>
 		</tr>
 	</table>
+	people: <span th:text="${people}">...</span>
     <a href="/checkStatus">Refresh</a><br/>
     <a href="/">Go Back</a>
 </body>
