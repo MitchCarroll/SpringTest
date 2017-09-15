@@ -1,32 +1,70 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Check Status</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Check Status</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<H1>Check Status</H1>
+	<h1>Check Status</h1>
 	<div th:switch="${isTesting}">
 		<p th:case="true">Still Testing</p>
 		<p th:case="false">Done Testing</p>
 		<p th:case="*">Ok, something went wrong...</p>
 	</div>
-	<table border="20" th:unless="${isTesting}">
-		<tr>
-			<th>Name</th>
-		</tr>
-		<tr th:each="person: ${people}">
-			<td th:text="${person}"/>
-		</tr>
-	</table>
-	<hr/>
+	<div th:unless="${isTesting}">
+		<table border="20">
+			<tr>
+				<th>Names in Database</th>
+			</tr>
+			<tr th:each="person: ${people}">
+				<td th:text="${person}" />
+			</tr>
+		</table>
+<!-- 		
+			<form action="#" th:action="@{/checkStatus}" th:object="${db}" method="post">
+				<table>
+					<th>Input New Record</th>
+					<tr>
+						<td>Last Name:</td>
+						<td><input type="text" name="lname" th:field="*{lname}" required="true" /></td>
+					</tr>
+					<tr>
+						<td>First Name:</td>
+						<td><input type="text" name="fname" th:field="*{fname}" required="true" /></td>
+						<td>Middle Name:</td>
+						<td><input type="text" name="mname" th:field="*{mname}" /></td>
+					</tr>
+					<tr>
+						<td>Date of Birth:</td>
+						<td><input type="date" name="dob" th:field="*{dob}" required="true" /></td>
+						<td>
+							<table>
+								<th>Sex:</th>
+								<tr>
+									<td>Male:</td>
+									<td><input type="radio" name="sex" th:field="*{sex}" value="M" checked="true" /></td>
+								</tr>
+								<tr>
+									<td>Female:</td>
+									<td><input type="radio" name="sex" th:field="*{sex}" value="F" /></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="submit" /></td>
+					</tr>
+				</table>
+			</form>
+-->
+	</div>
+	<hr />
 	<p>
-	<b>isTesting:</b> <i><span th:text="${isTesting}"></span></i><br/>
-	<b>people:</b> <i><span th:text="${people}">...</span><br/></i><br/>
+		<b>isTesting:</b> <i><span th:text="${isTesting}"></span></i><br /> <b>people:</b>
+		<i><span th:text="${people}">...</span><br /></i><br />
 	</p>
 	<p>
-	<a href="/checkStatus">Refresh</a><br/>
-    <a href="/">Go Back</a>
-    </p>
+		<a href="/checkStatus">Refresh</a><br /> <a href="/">Go Back</a>
+	</p>
 </body>
 </html>

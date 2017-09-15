@@ -34,7 +34,7 @@ public class MyBean {
 		testing = true;
 		try {
 			System.out.println(text+": Starting thread timer with value: " + value + "...");
-			Thread.sleep(5000);
+			Thread.sleep(20_000); //sleep 20 seconds
 			System.out.println(text+": Thread timer done with value: " + value + ".");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
