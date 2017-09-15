@@ -10,9 +10,8 @@
 		<p th:case="true">Still Testing</p>
 		<p th:case="false">Done Testing</p>
 		<p th:case="*">Ok, something went wrong...</p>
-		Testing Status: <span th:text="${isTesting}"></span>
 	</div>
-	<table border='2px' th:unless="${isTesting}">
+	<table border="20" th:unless="${isTesting}">
 		<tr>
 			<th>Name</th>
 		</tr>
@@ -20,8 +19,14 @@
 			<td th:text="${person}"/>
 		</tr>
 	</table>
-	people: <span th:text="${people}">...</span><br/>
-    <a href="/checkStatus">Refresh</a><br/>
+	<hr/>
+	<p>
+	<b>isTesting:</b> <i><span th:text="${isTesting}"></span></i><br/>
+	<b>people:</b> <i><span th:text="${people}">...</span><br/></i><br/>
+	</p>
+	<p>
+	<a href="/checkStatus">Refresh</a><br/>
     <a href="/">Go Back</a>
+    </p>
 </body>
 </html>
