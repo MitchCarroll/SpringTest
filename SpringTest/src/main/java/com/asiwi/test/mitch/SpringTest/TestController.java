@@ -46,7 +46,6 @@ public class TestController {
 		return "checkStatus";
 	}
 	
-	/*
 	@RequestMapping(value = "/checkStatus", method = RequestMethod.POST)
 	public String inputRecord(Model model) {
 		System.out.println("FORM: Initializing beans...");
@@ -57,6 +56,5 @@ public class TestController {
 
 		return "checkStatus";
 	}
-	*/
 	
 }

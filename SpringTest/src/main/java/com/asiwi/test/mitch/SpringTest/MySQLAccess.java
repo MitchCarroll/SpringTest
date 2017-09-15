@@ -77,29 +77,49 @@ public class MySQLAccess {
         }
     }
 
-/*
 	public void insert(String lname, String fname, String mname, String dob, String sex) {
 		String query = null;
+		boolean mid_name;
+		if(mname.isEmpty() || mname==null)
+			mid_name = false;
+		else
+			mid_name = true;
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost/test?"
 													+"user=sqluser&password=dbpassword");
 			statement = connection.createStatement();
 
-			query = "insert into people (last_name, first_name, middle_name, dob, sex) values ("
-					+lname+", "
-					+fname+", "
-					+mname+", "
-					+dob+", "
-					+sex
-					+") "
-					+"where not exists "
-					+"(select * from people where "
-					+"last_name = '"+lname+"' "
-					+"and first_name = '"+fname+"' "
-					+"and middle_name = '"+mname+"' "
-					+"and dob = '"+dob+"' "
-					+"and sex = '"+sex+"' "
-					+");";
+			if(mid_name)
+				query = "insert into people (last_name, first_name, middle_name, dob, sex) values ("
+						+lname+", "
+						+fname+", "
+						+mname+", "
+						+dob+", "
+						+sex
+						+") "
+						+"where not exists "
+						+"(select * from people where "
+						+"last_name = '"+lname+"' "
+						+"and first_name = '"+fname+"' "
+						+"and middle_name = '"+mname+"' "
+						+"and dob = '"+dob+"' "
+						+"and sex = '"+sex+"' "
+						+");";
+			else
+				query = "insert into people (last_name, first_name, dob, sex) values ("
+						+lname+", "
+						+fname+", "
+						+dob+", "
+						+sex
+						+") "
+						+"where not exists "
+						+"(select * from people where "
+						+"last_name = '"+lname+"' "
+						+"and first_name = '"+fname+"' "
+						+"and dob = '"+dob+"' "
+						+"and sex = '"+sex+"' "
+						+");";
+
 			statement.executeQuery(query);
 			resultSet = statement.executeQuery("select last_name, first_name, middle_name, dob from people order by dob desc;"); 
 		} catch (Exception e) {
@@ -109,6 +129,6 @@ public class MySQLAccess {
 			System.out.println("INSERT query: "+query);
 		}
 	}
-*/
+
 	
 }
