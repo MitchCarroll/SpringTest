@@ -20,6 +20,7 @@ public class MyDBBean {
 		try {
 			System.out.println(text+": Running Query");
 			db.readDataBase();
+			db.writeResultSet();
 			db.close();
 			System.out.println(text+": Query Done");
 		} catch (Exception e) {

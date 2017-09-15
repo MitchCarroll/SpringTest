@@ -17,10 +17,10 @@
 			<th>Name</th>
 		</tr>
 		<tr th:each="person: ${people}">
-			<td th:text="${person.name}"/>
+			<td th:text="${person}"/>
 		</tr>
 	</table>
-	people: <span th:text="${people}">...</span>
+	people: <span th:text="${people}">...</span><br/>
     <a href="/checkStatus">Refresh</a><br/>
     <a href="/">Go Back</a>
 </body>

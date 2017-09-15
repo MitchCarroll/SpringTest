@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.sql.DriverManager;
 
@@ -20,14 +21,13 @@ public class MySQLAccess {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost/test?" + "user=sqluser&password=dbpassword");
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery("select last_name, first_name, middle_name, dob from people order by dob desc;");
-			writeResultSet(resultSet);
 		}
 		catch(Exception e) {
 			System.out.println("Exception in readDataBase: "+e.getMessage());
 		}
 	}
 	
-	private void writeResultSet(ResultSet resultSet) {
+	public void writeResultSet() {
 		try {
 			while(resultSet.next()) {
 				String lastName = resultSet.getString("last_name");
