@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Check Status</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<H1>Check Status</H1>
+	<div th:switch="${isTesting}">
+		<p th:="'true'">Still Testing</p>
+		<p th:="'false'">Done Testing</p>
+		<p th:="*">Ok, something went wrong...</p>
+	</div>
+	<table>
+		<tr>
+			<th>name</th>
+		</tr>
+		<tr th:each = "person: ${people}">
+			<td th:text="${person.name}"/>
+		</tr>
+	</table>
+    <a href="/checkStatus">Refresh</a><br/>
+    <a href="/">Go Back</a>
+</body>
+</html>

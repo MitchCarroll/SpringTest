@@ -11,24 +11,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @EnableAsync
-public class RunTestController {
+public class CheckStatusController {
 	@Autowired 
 	private ApplicationContext context;
 	
-	@RequestMapping(value = "/runTest", method = RequestMethod.GET)
+	@RequestMapping(value = "/checkStatus", method = RequestMethod.GET)
 	public String runTest(@RequestParam(value="name", required=false, defaultValue="DefaultValue") String name, Model model) throws Exception {
-		System.out.println("CONTROLLER: Initializing beans for async jobs...");
+		System.out.println("STATUS: Initializing beans...");
 		MyBean myBean = (MyBean) context.getBean("WebBean");
 		MyDBBean dbBean = (MyDBBean) context.getBean("DbBean");
-		myBean.setValue(name);
-		
-		System.out.println("CONTROLLER: Starting async jobs...");
-		myBean.test();
-		dbBean.test();
-		System.out.println("CONTROLLER: Async jobs start completed.");
-		
-		model.addAttribute("name", name);
-		System.out.println("CONTROLLER: Name attribute set to " + name + ".");
-		return "runTest";
+		System.out.println("STATUS: Beans initialized.");
+		model.addAttribute("people", dbBean.getAll());
+		model.addAttribute("isTesting", myBean.isTesting());
+		return "checkStatus";
 	}
 }

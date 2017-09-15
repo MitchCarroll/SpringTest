@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.sql.DriverManager;
 
 public class MySQLAccess {
@@ -23,9 +24,6 @@ public class MySQLAccess {
 		catch(Exception e) {
 			System.out.println("Exception in readDataBase: "+e.getMessage());
 		}
-		finally {
-			close();
-		}
 	}
 	
 	private void writeResultSet(ResultSet resultSet) {
@@ -40,8 +38,26 @@ public class MySQLAccess {
 		} catch (SQLException e) {
 			System.out.println("Exception in writeResultSet: "+e.getMessage());		}
 	}
-	
-	private void close() {
+
+
+	public List<String> getNameList() {
+		List<String> ret = null;
+		
+		try {
+			while(resultSet.next()) {
+				String lastName = resultSet.getString("last_name");
+				String firstName = resultSet.getString("first_name");
+				String middleName = resultSet.getString("middle_name");
+				ret.add(""+firstName+" "+middleName.substring(0, 1)+". "+lastName);
+			}
+		} catch (SQLException e) {
+			System.out.println("Exception in writeResultSet: "+e.getMessage());		
+			return null;
+		}
+		return ret;
+	}
+
+	public void close() {
         try {
             if (resultSet != null) 	resultSet.close();
             if (statement != null) 	statement.close();
