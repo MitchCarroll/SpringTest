@@ -1,4 +1,4 @@
-package com.asiwi.test.mitch.SpringTest;
+package com.mitchcarroll.test.SpringTest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

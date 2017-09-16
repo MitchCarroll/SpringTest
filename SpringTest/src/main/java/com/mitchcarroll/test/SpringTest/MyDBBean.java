@@ -1,4 +1,4 @@
-package com.asiwi.test.mitch.SpringTest;
+package com.mitchcarroll.test.SpringTest;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.asiwi.test.mitch.SpringTest;
+package com.mitchcarroll.test.SpringTest;
 
 import java.util.List;
 
@@ -46,8 +46,9 @@ public class TestController {
 		return "checkStatus";
 	}
 	
-	@RequestMapping(value = "/checkStatus", method = RequestMethod.POST)
-	public String inputRecord(Model model) {
+	@RequestMapping(value = "/inputData", method = RequestMethod.POST)
+	public String inputRecor
+	(Model model) {
 		System.out.println("FORM: Initializing beans...");
 		MyDBBean dbBean = (MyDBBean) context.getBean("DbBean");
 		System.out.println("FORM: Beans initialized.");

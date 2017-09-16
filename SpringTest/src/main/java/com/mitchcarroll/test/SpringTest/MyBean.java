@@ -1,4 +1,4 @@
-package com.asiwi.test.mitch.SpringTest;
+package com.mitchcarroll.test.SpringTest;
 
 import org.springframework.scheduling.annotation.Async;
 
